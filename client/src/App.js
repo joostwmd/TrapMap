@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+
+import AddArtist from './pages/AddArtist';
+import ArtistProfile from './pages/ArtistProfile';
+import Map from './pages/Map';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/map" component={Map} />
+          <Route exact path="/addArtist" component={AddArtist} />
+          <Route exact path="/map/:id" render={props => <ArtistProfile {...props} />} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
